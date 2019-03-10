@@ -3,12 +3,14 @@ from win32gui import GetWindowText, GetForegroundWindow
 from pynput import keyboard
 
 def detect():
+    print('Loading Game')
     while True:
         if 'RocketLeague.exe' in popen('tasklist').read():
             run_script()
             break
 
 def run_script():
+    print('Running Script. Close game with ALT+F4.')
     combo = {keyboard.Key.alt_l, keyboard.Key.f4}
     current = set()
 
@@ -33,6 +35,6 @@ if __name__ == '__main__':
     try:
         popen('RocketLeague.exe')
     except FileNotFoundError as e:
-        print(e)
+        input(e)
     chdir('C:/Windows/System32')
     detect()
